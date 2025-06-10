@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }} - 나의 웹 서비스</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      .navbar {
+        background-color: #333;
+        color: white;
+        padding: 1em;
+        text-align: center;
+      }
+      .navbar a {
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .navbar a:hover {
+        background-color: #575757;
+      }
+      .container {
+        width: 80%;
+        margin: 20px auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+      }
+      p {
+        line-height: 1.6;
+        color: #666;
+      }
+
+      /* Posts 페이지를 위한 스타일 */
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        background-color: #f9f9f9;
+        margin-bottom: 10px;
+        padding: 15px;
+        border-radius: 5px;
+        border: 1px solid #eee;
+      }
+      li strong {
+        display: block;
+        margin-bottom: 5px;
+        color: #0056b3;
+      }
+
+      /* Photos 페이지를 위한 스타일 */
+      .photos-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 20px;
+        padding: 20px 0;
+      }
+      .photo-item {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        padding: 10px;
+        overflow: hidden;
+      }
+      .photo-item img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        margin-bottom: 10px;
+      }
+      .photo-item p {
+        font-size: 0.9em;
+        color: #555;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* Users 페이지를 위한 새로운 스타일 */
+      .users-container table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      .users-container th,
+      .users-container td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        font-size: 0.9em;
+      }
+      .users-container th {
+        background-color: #f2f2f2;
+        color: #333;
+      }
+      .users-container tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      .users-container tr:hover {
+        background-color: #f1f1f1;
+      }
+      .users-container a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      .users-container a:hover {
+        text-decoration: underline;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 20px;
+        margin-top: 30px;
+        color: #666;
+        font-size: 0.9em;
+        border-top: 1px solid #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      {% if session.get('logged_in') %}
+      <a href="/dashboard">Dashboard</a>
+      <a href="/logout">로그아웃</a>
+      {% else %}
+      <a href="/login">로그인</a>
+      {% endif %}
+      <a href="/posts">Posts</a>
+      <a href="/photos">Photos</a>
+      <a href="/users">Users</a>
+    </div>
+
+    <div class="container">{% block content %}{% endblock %}</div>
+
+    <div class="footer">
+      <p>&copy; 2025 나의 웹 서비스. All rights reserved.</p>
+    </div>
+  </body>
+</html>

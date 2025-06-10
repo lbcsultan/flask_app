@@ -1,0 +1,64 @@
+{% extends "base.html" %} {% set title = "사용자 목록" %} {% block content %}
+<h1>사용자 목록</h1>
+<p>JSONPlaceholder에서 가져온 사용자 정보입니다.</p>
+
+<div class="users-container">
+  {% if users %}
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>이름</th>
+        <th>사용자명</th>
+        <th>이메일</th>
+        <th>전화번호</th>
+        <th>웹사이트</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td>
+          <a href="http://{{ user.website }}" target="_blank"
+            >{{ user.website }}</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>사용자 정보를 불러오지 못했습니다.</p>
+  {% endif %}
+</div>
+
+<style>
+  /* 사용자 목록을 위한 CSS (테이블) */
+  .users-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  .users-container th,
+  .users-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  .users-container th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  .users-container tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  .users-container tr:hover {
+    background-color: #f1f1f1;
+  }
+</style>
+{% endblock %}
