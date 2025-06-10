@@ -2,9 +2,11 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 import requests
 from datetime import datetime
 import uuid
+import os
 
 # Flask 애플리케이션 인스턴스 생성
-app = Flask(__name__)
+app = Flask(__name__, 
+    template_folder=os.path.join(os.path.dirname(os.path.dirname(__file__)), 'templates'))
 app.secret_key = 'your_secret_key' 
 
 # 1. Home 페이지 라우트
